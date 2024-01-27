@@ -50,6 +50,7 @@ public class TypingController : MonoBehaviour
                 }
                 else {
                     typedString += "<color=\"red\">"+string.Copy(slicedWords[currentWordIdx]) + "</color>" + " "; 
+                    levelManager.HurtPlayer();
                 }
                 currentWordIdx++;
                 if(currentWordIdx==slicedWords.Count()) {
@@ -64,12 +65,13 @@ public class TypingController : MonoBehaviour
                     else if(currentLineIdx==4) {
                         bool isLastPantunInLevel=currentPantunIdx==levelManager.Levels[levelManager.CurrentLevel].Pantuns.Count-1;
                         if(isLastPantunInLevel) {
-                            levelManager.CurrentLevel++;
+                            levelManager.NextLevel();
                             GetNewLevelContent();
                         }
                         else {
                             currentPantunIdx++;
-                            GetNextEnemy();
+                            GetNextPantun();
+                            levelManager.HurtEnemy();
                         }
                     }
                 }
@@ -82,9 +84,9 @@ public class TypingController : MonoBehaviour
     public void GetNewLevelContent() {
         if(levelManager.CurrentLevel==levelManager.Levels.Count) return;
         currentPantunIdx=0;
-        GetNextEnemy();
+        GetNextPantun();
     }
-    public void GetNextEnemy() {
+    public void GetNextPantun() {
         currentLineIdx=0;
         currentWordIdx=0;
         slicedContents = new List<string>(levelManager.Levels[levelManager.CurrentLevel].Pantuns[currentPantunIdx].content.Split(
