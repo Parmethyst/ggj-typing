@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +10,9 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] List<LevelData> levels;
-    [SerializeField] Slider playerHpBar;
-    [SerializeField] Slider enemyHpBar;
+    [SerializeField] Image playerHpBar;
+    [SerializeField] Image enemyHpBar;
+    [SerializeField] Animator pitungAnimator;
     private int currentLevel=0;
     private float currentTimer=0.0f;
     private int currentPlayerHp=100;
@@ -17,8 +20,8 @@ public class LevelManager : MonoBehaviour
     private int maxHp=100;
     void Start() {
         currentTimer=levels[0].Timer/1.0f;
-        playerHpBar.value=currentPlayerHp;
-        enemyHpBar.value=currentEnemyHp;
+        playerHpBar.fillAmount=(float)currentPlayerHp/maxHp;
+        enemyHpBar.fillAmount=(float)currentEnemyHp/maxHp;
     }
     void Update(){
         currentTimer-=Time.deltaTime;
@@ -26,18 +29,19 @@ public class LevelManager : MonoBehaviour
     }
     public void HurtPlayer() {
         currentPlayerHp-=levels[currentLevel].EnemyDamage;
-        playerHpBar.value=currentPlayerHp;
+        playerHpBar.fillAmount=(float)currentPlayerHp/maxHp;
+        pitungAnimator.SetTrigger("IsAttacked");
     }
     public void HurtEnemy() {
-        currentEnemyHp-=Mathf.FloorToInt(100/levels[currentLevel].Pantuns.Count);
-        enemyHpBar.value=currentEnemyHp;
+        currentEnemyHp-=100/levels[currentLevel].Pantuns.Count;
+        enemyHpBar.fillAmount=(float)currentEnemyHp/maxHp;
     }
     public void NextLevel() {
         currentLevel++;
         currentEnemyHp=maxHp;
         currentPlayerHp=maxHp;
-        playerHpBar.value=currentPlayerHp;
-        enemyHpBar.value=currentEnemyHp;
+        playerHpBar.fillAmount=(float)currentPlayerHp/maxHp;
+        enemyHpBar.fillAmount=(float)currentEnemyHp/maxHp;
         currentTimer=levels[currentLevel].Timer;
     }
     public int CurrentLevel { get => currentLevel; set => currentLevel = value; }
