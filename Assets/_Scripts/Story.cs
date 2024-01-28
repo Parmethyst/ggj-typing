@@ -7,4 +7,5 @@ public class Story : ScriptableObject
 {
     public List<string> dialogues;
     public List<Sprite> cutscenes;
+    public List<bool> isNextDialogueImage;
 }

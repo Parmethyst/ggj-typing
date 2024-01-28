@@ -17,10 +17,6 @@ public class TypingController : MonoBehaviour
     private int currentWordIdx = 0;
     private List<string> slicedWords;
     private List<string> slicedContents;
-    void Start()
-    {
-        GetNewLevelContent();
-    }
     // Update is called once per frame
     void Update()
     {
@@ -60,7 +56,6 @@ public class TypingController : MonoBehaviour
                 {
                     typedString += "\n";
                     currentLineIdx++;
-                    Debug.Log(currentLineIdx);
                     currentWordIdx = 0;
                     if (currentLineIdx != 4) GetNextLineWords();
                     if (currentLineIdx == 2)
@@ -72,8 +67,14 @@ public class TypingController : MonoBehaviour
                         bool isLastPantunInLevel = currentPantunIdx == levelManager.Levels[levelManager.CurrentLevel].Pantuns.Count - 1;
                         if (isLastPantunInLevel)
                         {
-                            levelManager.NextLevel();
-                            GetNewLevelContent();
+                            levelManager.HurtEnemy();
+                            typedString="";
+                            playerString="";
+                            inputText.text = typedString + playerString;
+                            levelManager.ShowWinScreen();
+
+                            // levelManager.NextLevel();
+                            // GetNewLevelContent();
                         }
                         else
                         {
@@ -114,5 +115,10 @@ public class TypingController : MonoBehaviour
     {
         typedString = "";
         guideText.text = slicedContents[startIndex] + "\n" + slicedContents[startIndex + 1];
+    }
+    public void ResetTextContents() {
+        typedString="";
+        playerString="";
+        inputText.text = typedString + playerString;
     }
 }

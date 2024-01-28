@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aeaf0a41a451864e9db9167a36bb7b5, type: 3}
+  m_Name: Story-Intro
+  m_EditorClassIdentifier: 
+  dialogues:
+  - Sekarang abad angkasium tahun 7777. Vendo Obsido Company telah menaklukan planet
+    I-45 untuk merampas tanaman bernama rempa.
+  - "Rakyat I-45 sudah pasrah, dan harapan hilang\u2026"
+  - Hingga munculnya sang Phantom Thief Pitung! Ia akan mencuri kembali
+  - "Harapan dan mimpi warga I-45 kembali\u2026"
+  - Kini, ia sedang menyelamatkan temannya, Jack Go, dari tangan komandan VOC Van
+    De Veleg di bentengnya
+  - "Ini dia, benteng Van De Veleg, Jack Go pasti di dalam\u2026"
+  - "\u201CAhh Pitung, akhirnya engkau datang\u2026 Datang untuk mati! Pasukan! Bidik
+    dan tembak dia!\u201D"
+  - "Hmm, pasukan organik ya\u2026 Yasudah, ku akan menggunakan seni bela diri vocal
+    saja!"
+  - Hyeaaaghh!!!
+  cutscenes:
+  - {fileID: 21300000, guid: 67b3b5eb5e9a5d80bac343fbdbc4f4b7, type: 3}
+  - {fileID: 21300000, guid: 92848ac18d05799b5a0fa57a79a6176a, type: 3}
+  isNextDialogueImage: 000000000001000000
